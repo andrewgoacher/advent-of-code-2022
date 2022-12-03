@@ -63,3 +63,8 @@ let ``Day 2 Part 2: Calculated score``()=
 let ``Day 3 Part 1: Calculate priority``()=
     (Day3.solve_part_1 Inputs.day3)
     |> should equal 157
+
+[<Fact>]
+let ``Day 3 Part 2: Calculate priority``()=
+    (Day3.solve_part_2 Inputs.day3)
+    |> should equal 70

@@ -14,6 +14,9 @@ module Utils=
             str
             |> Convert.ToInt32 |> Some
 
+    let get_input_string day =
+        (sprintf "content/day%i.txt" day)
+        |> System.IO.File.ReadAllText
 
 module Day1=
     let private collect (list: int list) (item: int option)=
@@ -30,10 +33,7 @@ module Day1=
     let private get_value (item: int)=
         item
 
-    let get_input_string() =
-        System.IO.File.ReadAllText "content/day1.txt"
-
-    let solve_day_1 (input: string)=
+    let solve_day_1_part_1 (input: string)=
         let list = 
             input
             |> Utils.split [|'\n'|]
@@ -43,9 +43,26 @@ module Day1=
 
         list.Head
 
+    let solve_day_1_part_2 (input: string)=
+        input
+        |> Utils.split [|'\n'|]
+        |> Array.map Utils.try_convert
+        |> Array.fold collect List.empty
+        |> List.sortByDescending get_value
+        |> List.take 3
+        |>List.sum      
+
 module Program=
 [<EntryPoint>]
 let main argv =
-    let day1_part1 = Day1.get_input_string() |> Day1.solve_day_1
-    printfn "day1 part 1: %d" day1_part1
+    Utils.get_input_string(1) 
+    |> Day1.solve_day_1_part_1
+    |> printfn "day1 part 1: %d"
+    |> ignore
+
+    Utils.get_input_string(1) 
+    |> Day1.solve_day_1_part_2
+    |> printfn "day1 part 2: %d"
+    |> ignore
+
     0

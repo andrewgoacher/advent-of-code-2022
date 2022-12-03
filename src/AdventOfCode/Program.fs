@@ -30,6 +30,9 @@ module Day1=
     let private get_value (item: int)=
         item
 
+    let get_input_string() =
+        System.IO.File.ReadAllText "content/day1.txt"
+
     let solve_day_1 (input: string)=
         let list = 
             input
@@ -39,3 +42,10 @@ module Day1=
             |> List.sortByDescending get_value
 
         list.Head
+
+module Program=
+[<EntryPoint>]
+let main argv =
+    let day1_part1 = Day1.get_input_string() |> Day1.solve_day_1
+    printfn "day1 part 1: %d" day1_part1
+    0

@@ -29,6 +29,15 @@ B X
 C Z
     """
 
+    let day3="""
+vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+    """
+
 [<Fact>]
 let ``Day 1 Part 1: Elf with most calories`` () =
 
@@ -46,6 +55,11 @@ let ``Day 2 Part 1: Calculated Score`` ()=
     |> should equal 15
 
 [<Fact>]
-let ``Day2 Part 2: Calculated score``()=
+let ``Day 2 Part 2: Calculated score``()=
     (Day2.solve_day_2_part_2 Inputs.day2)
     |> should equal 12
+
+[<Fact>]
+let ``Day 3 Part 1: Calculate priority``()=
+    (Day3.solve_part_1 Inputs.day3)
+    |> should equal 157

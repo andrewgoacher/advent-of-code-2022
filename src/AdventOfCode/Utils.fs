@@ -5,10 +5,10 @@ open System
 module Utils=
 
     let split (chars: char[]) (input: string)=
-        input.Split(chars, StringSplitOptions.None)
+        input.Trim().Split(chars, StringSplitOptions.None)
 
     let split_complete (chars: char[]) (input: string)=
-        input.Split(chars, StringSplitOptions.RemoveEmptyEntries)
+        input.Trim().Split(chars, StringSplitOptions.RemoveEmptyEntries)
 
     let try_convert (input: string)=
         let str = input.Replace("\r", "").Replace("\n", "") 

@@ -23,6 +23,12 @@ module Inputs=
 10000
 """  
 
+    let day2 = """
+    A Y
+B X
+C Z
+    """
+
 [<Fact>]
 let ``Day 1 Part 1: Elf with most calories`` () =
 
@@ -30,6 +36,11 @@ let ``Day 1 Part 1: Elf with most calories`` () =
     result |> should equal 24000
 
 [<Fact>]
-let ``Day 2 Part 2: Sum of top 3 calories`` ()=
+let ``Day 1 Part 2: Sum of top 3 calories`` ()=
     let result = Day1.solve_day_1_part_2 Inputs.day1
     result |> should equal 45000
+
+[<Fact>]
+let ``Day 2 Part 1: Calculated Score`` ()=
+    (Day2.solve_day_2_part_1 Inputs.day2)
+    |> should equal 15

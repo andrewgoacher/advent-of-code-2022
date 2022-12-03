@@ -13,6 +13,10 @@ module Program=
         Utils.get_input_string 2
         |> Day2.solve_day_2_part_1
         |> printfn "day 2 part 1: %d"
+
+        Utils.get_input_string 2
+        |> Day2.solve_day_2_part_2
+        |> printfn "day 2 part 2: %d"
     
         System.Console.Read |> ignore
         0

@@ -44,3 +44,8 @@ let ``Day 1 Part 2: Sum of top 3 calories`` ()=
 let ``Day 2 Part 1: Calculated Score`` ()=
     (Day2.solve_day_2_part_1 Inputs.day2)
     |> should equal 15
+
+[<Fact>]
+let ``Day2 Part 2: Calculated score``()=
+    (Day2.solve_day_2_part_2 Inputs.day2)
+    |> should equal 12

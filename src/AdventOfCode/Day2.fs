@@ -20,6 +20,12 @@ module Day2=
     | "C" | "Z" -> Some RPS.Scissors
     | _ -> None
 
+    let private get_success_type = function
+    | "X" -> Some Success.Lose
+    | "Y" -> Some Success.Draw
+    | "Z" -> Some Success.Win
+    | _ -> None
+
     let private score_rps = function
     | RPS.Rock -> 1
     | RPS.Paper -> 2
@@ -42,6 +48,34 @@ module Day2=
         | [] -> None
         | _ -> None
 
+    let private get_win_move = function
+    | None -> None
+    | Some RPS.Rock -> Some (RPS.Rock, RPS.Paper)
+    | Some RPS.Paper -> Some (RPS.Paper, RPS.Scissors)
+    | Some RPS.Scissors -> Some (RPS.Scissors, RPS.Rock)
+
+    let private get_draw_move = function
+    | None -> None
+    | Some x -> Some (x, x)
+
+    let private get_lose_move = function
+    | None -> None
+    | Some RPS.Rock -> Some (RPS.Rock,  RPS.Scissors)
+    | Some RPS.Paper -> Some (RPS.Paper, RPS.Rock)
+    | Some RPS.Scissors -> Some (RPS.Scissors, RPS.Paper)
+
+    let private calculate_rps=function
+    | first :: second :: _-> 
+        let first = get_rps first
+        match get_success_type second with
+        | None -> None
+        | Some (Success.Win) -> get_win_move first
+        | Some (Success.Draw) -> get_draw_move first
+        | Some (Success.Lose) -> get_lose_move first
+        
+    | [] -> None
+    | _ -> None
+
 
     let private get_success= function
     | None -> None
@@ -62,7 +96,15 @@ module Day2=
         |> Array.toList 
         |> get_inputs
 
+    let private collect_2 input=
+        input 
+        |> split_complete [|' '|]
+        |> Array.toList
+        |>calculate_rps
+
     let private play = collect >> get_success >> get_score
+
+    let private play2 = collect_2 >> get_success >> get_score
 
     let solve_day_2_part_1 (input: string)=
         input
@@ -71,5 +113,8 @@ module Day2=
         |> Array.sum
 
     let solve_day_2_part_2 (input: string)=
-        0
+        input
+        |> split_complete [|'\r';'\n'|]
+        |> Array.map play2
+        |> Array.sum
 

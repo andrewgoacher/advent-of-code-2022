@@ -82,3 +82,8 @@ let ``Day 3 Part 2: Calculate priority``()=
 let ``Day 4 Part 1: Calculate number of duplicated jobs``()=
     (Day4.solve_part_1 Inputs.day4)
     |> should equal 2
+
+[<Fact>]
+let ``Day 4 Part 2: Calculate number of duplicated jobs``()=
+    (Day4.solve_part_2 Inputs.day4)
+    |> should equal 4

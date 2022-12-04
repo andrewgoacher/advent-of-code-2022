@@ -21,3 +21,14 @@ module Utils=
     let get_input_string day =
         (sprintf "content/day%i.txt" day)
         |> System.IO.File.ReadAllText
+
+    let private contains_item (array) (value)=
+        array
+        |> Array.contains value
+
+    let get_items_in_both_collections (arrays)=
+        let (arr1, arr2) = arrays
+        let contains_item_1 = contains_item arr1
+        arr2
+        |> Array.filter contains_item_1
+        |> Array.distinct

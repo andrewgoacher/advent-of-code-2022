@@ -10,17 +10,6 @@ module Day3=
     let private split (str:string)=
         (str.Substring(0, str.Length/2),str.Substring(str.Length/2))
 
-    let private contains_item (char) (value)=
-        char
-        |> Array.contains value
-
-    let private get_unique (chars)=
-        let (char1, char2) = chars
-        let contains_char_1 = contains_item char1
-        char2
-        |> Array.filter contains_char_1
-        |> Array.distinct
-
     let private to_arrays (tuple: string*string)=
         let (arr1, arr2) = tuple
         (arr1.ToCharArray(), arr2.ToCharArray())
@@ -30,7 +19,7 @@ module Day3=
         |> Array.map char_to_score
         |> Array.sum
 
-    let private calculate = to_arrays >> get_unique >> get_score
+    let private calculate = to_arrays >> Utils.get_items_in_both_collections >> get_score
 
     let private collect_3s (inputs: string[])=
         seq {
@@ -48,7 +37,7 @@ module Day3=
         |> Array.map to_char_array
 
     let private get_unique_3s (chars: char[][])=
-        get_unique ((get_unique (chars.[0], chars.[1])), chars.[2])
+        Utils.get_items_in_both_collections ((Utils.get_items_in_both_collections (chars.[0], chars.[1])), chars.[2])
 
     let private calculate_3s = 
         convert_to_arrays 

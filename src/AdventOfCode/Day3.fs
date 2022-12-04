@@ -31,13 +31,6 @@ module Day3=
         |> Array.sum
 
     let private calculate = to_arrays >> get_unique >> get_score
-        
-    let solve_part_1 (input: string) =
-        input
-        |> Utils.split_complete [|'\r';'\n'|]
-        |> Array.map split
-        |> Array.map calculate
-        |> Array.sum
 
     let private collect_3s (inputs: string[])=
         seq {
@@ -47,14 +40,27 @@ module Day3=
                 |> Array.take 3
         }
 
+    let private to_char_array (str:string)=
+        str.ToCharArray()
+
     let private convert_to_arrays (arrays: string[])=
         arrays
-        |> Array.map (fun str -> str.ToCharArray())
+        |> Array.map to_char_array
 
     let private get_unique_3s (chars: char[][])=
         get_unique ((get_unique (chars.[0], chars.[1])), chars.[2])
 
-    let private calculate_3s = convert_to_arrays >> get_unique_3s >> get_score
+    let private calculate_3s = 
+        convert_to_arrays 
+        >> get_unique_3s 
+        >> get_score
+        
+    let solve_part_1 (input: string) =
+        input
+        |> Utils.split_complete [|'\r';'\n'|]
+        |> Array.map split
+        |> Array.map calculate
+        |> Array.sum
 
     let solve_part_2 (input: string)=
         input

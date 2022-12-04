@@ -94,27 +94,22 @@ module Day2=
         input
         |> split_complete [|' '|]
         |> Array.toList 
-        |> get_inputs
 
-    let private collect_2 input=
-        input 
-        |> split_complete [|' '|]
-        |> Array.toList
-        |>calculate_rps
-
-    let private play = collect >> get_success >> get_score
-
-    let private play2 = collect_2 >> get_success >> get_score
+    let private play calculator= 
+        collect 
+        >> calculator 
+        >> get_success 
+        >> get_score
 
     let solve_day_2_part_1 (input: string)=
         input
         |> split_complete [|'\r'; '\n'|]
-        |> Array.map play
+        |> Array.map (play get_inputs)
         |> Array.sum
 
     let solve_day_2_part_2 (input: string)=
         input
         |> split_complete [|'\r';'\n'|]
-        |> Array.map play2
+        |> Array.map (play calculate_rps)
         |> Array.sum
 

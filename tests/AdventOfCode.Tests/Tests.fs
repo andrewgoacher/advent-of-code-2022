@@ -38,6 +38,15 @@ ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
     """
 
+    let day4 = """
+    2-4,6-8
+2-3,4-5
+5-7,7-9
+2-8,3-7
+6-6,4-6
+2-6,4-8
+    """
+
 [<Fact>]
 let ``Day 1 Part 1: Elf with most calories`` () =
 
@@ -68,3 +77,8 @@ let ``Day 3 Part 1: Calculate priority``()=
 let ``Day 3 Part 2: Calculate priority``()=
     (Day3.solve_part_2 Inputs.day3)
     |> should equal 70
+
+[<Fact>]
+let ``Day 4 Part 1: Calculate number of duplicated jobs``()=
+    (Day4.solve_part_1 Inputs.day4)
+    |> should equal 2
